@@ -2,58 +2,35 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>ฝากซื้อด้วย</title>
+    <title>POP TA &#8482;</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+  <div class="heading">
+    <h1>POP TA &#8482;</h1>
+    <h3>You will never get bored</h3>
+  </div>
 
+  <p id="score">0</p>
+  <div class="ta_image">
+    <img src="./resources/TA_temp.png" alt="Invalid" id="ta1" height="400px">
+  </div>
+
+  <div class="chooser">
+    <form>
+      <label for="ta_chooser">
+        <p>Choose your TA:</p>
+      </label>
+
+      <select name="ta" id="ta_chooser">
+        <option value="ta1">TA JomnoiZ</option>
+        <option value="ta2">TA Oat</option>
+        <option value="ta3">TA idk</option>
+      </select>
+      <input type="submit" value="Submit">
+  </form>
+  </div>
   <body>
-    <section>
-      <header><h1 id="app-name">ฝากซื้อด้วย</h1></header>
-    </section>
-
-    <section>
-      <header>
-        <h2 class="section-title">รายชื่อผู้มีสิทธิฝากซื้อ</h2>
-        <span class="section-subtitle">(ชื่อคนในกลุ่มที่มาร่วมทำวันนี้)</span>
-      </header>
-      <ul id="member-list"></ul>
-      <input id="member-name-to-add" />
-      <button id="add-member">จ้าง</button>
-
-      <h2 class="section-title">ตัวกรองรายการฝากซื้อ</h2>
-      <select id="filter-name"></select>
-      <input id="lower-price" type="number" placeholder="$ MIN"/>
-      <input id="upper-price" type="number" placeholder="$ MAX"/>
-      <button id="filter-button">กรอง</button>
-    </section>
-
-    <section>
-      <header><h2 class="section-title">รายการฝากซื้อ</h2></header>
-      <table id="main-table">
-        <thead>
-          <tr>
-            <th>ของที่ฝากซื้อ</th>
-            <th>ชื่อผู้ฝากซื้อ</th>
-            <th>ราคา (บาท)</th>
-            <th>ดำเนินการ</th>
-          </tr>
-        </thead>
-
-        <tbody id="main-table-body"></tbody>
-
-        <tfoot>
-          <tr id="newrow-form">
-            <td><input id="item-to-add" type="text" /></td>
-            <td>
-              <select id="name-to-add"></select>
-            </td>
-            <td><input id="price-to-add" type="number" /></td>
-            <td><button id="add-newrow">เพิ่ม</button></td>
-          </tr>
-        </tfoot>
-      </table>
-    </section>
-
-    <script type="module" src="scripts/main.js"></script>
+  
+    <!--<script type="module" src="scripts/main.js"></script>   -->
   </body>
 </html>
