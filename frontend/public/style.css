@@ -3,7 +3,8 @@
 body{
   margin: 0%;
   padding: 0%;
-  background-color: rgb(255, 244, 198);
+  /*background-color: rgb(255, 244, 198);*/
+  background: linear-gradient(to left, rgb(255,244,198),#ffffff);
 }
 
 .heading{
@@ -20,10 +21,16 @@ h1{
 
 h3{
   font-family: 'Comic Sans MS';
+  margin: 0px 0px -10px 0px;
 }
 
 #score{
+  font-size: 3em;
+  margin: 10px 0px 0px 0px;
   text-align: center;
+  font-family: "Impact";
+  -webkit-text-stroke: 2px black;
+  color: white;
 }
 
 .ta_image{
