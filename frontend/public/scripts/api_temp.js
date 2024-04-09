@@ -1,4 +1,4 @@
-import { BACKEND_URL } from "./config.js";
+import { BACKEND_URL } from "./config_temp.js";
 
 export async function getItems() {
   const items = await fetch(`${BACKEND_URL}/items`).then((r) => r.json());

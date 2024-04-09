@@ -1,6 +1,6 @@
-import { createMember, deleteMember, getMembers } from "./api.js";
-import { MEMBERS } from "./config.js";
-import { fetchAndDrawTable } from "./table.js";
+import { createMember, deleteMember, getMembers } from "./api_temp.js";
+import { MEMBERS } from "./config_temp.js";
+import { fetchAndDrawTable } from "./table_temp.js";
 
 export async function populateMembers() {
   const memberList = document.getElementById("member-list");

@@ -1,5 +1,5 @@
-import { handleCreateMember, populateMembers } from "./member.js";
-import { fetchAndDrawTable, handleCreateItem, handleFilterItem } from "./table.js";
+import { handleCreateMember, populateMembers } from "./member_temp.js";
+import { fetchAndDrawTable, handleCreateItem, handleFilterItem } from "./table_temp.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchAndDrawTable();

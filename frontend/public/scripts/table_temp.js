@@ -1,4 +1,4 @@
-import { createItem, deleteItem, getItems, filterItems } from "./api.js";
+import { createItem, deleteItem, getItems, filterItems } from "./api_temp.js";
 
 function drawTable(items) {
   const table = document.getElementById("main-table-body");
