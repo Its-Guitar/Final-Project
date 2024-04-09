@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>POP TA &#8482;</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>POP TA &#8482;</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
   <div class="heading">
     <h1>POP TA &#8482;</h1>
     <h3>You will never get bored</h3>
   </div>
 
-  <p id="score">0</p>
+  <div id="score">
+    <div id="ta1">0</div>
+    <div id="ta2" class="hidden">121212</div>
+  </div>
+
   <div class="ta_image">
-    <img src="./resources/TA_temp.png" alt="Invalid" id="ta1" height="400px">
+    <img src="./resources/TA_1.png" alt="Invalid" id="image_ta1" height="400px">
+    <img src="./resources/TA_2.png" alt="Invalid" id="image_ta2" height="400px" class="hidden">
   </div>
 
   <div class="chooser">
-    <form>
-      <label for="ta_chooser">
-        <p>Choose your TA:</p>
-      </label>
-
-      <select name="ta" id="ta_chooser">
-        <option value="ta1">TA JomnoiZ</option>
-        <option value="ta2">TA Oat</option>
-        <option value="ta3">TA idk</option>
-      </select>
-      <input type="submit" value="Submit">
-  </form>
+    <button id="toggleButton">Switch TA</button>
   </div>
-  <body>
-  
-    <!--<script type="module" src="scripts/main.js"></script>   -->
-  </body>
+
+  <script type="module" src="./scripts/main.js"></script>
+</body>
 </html>
