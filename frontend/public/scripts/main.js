@@ -17,7 +17,12 @@ toggleButton.addEventListener("click", () => {
 });
 
 main_image1.addEventListener("mousedown",() => {
+    main_image1.src = "../resources/TA_1_pop.png";
     addScore(main_image1,score1,count1);
+});
+
+main_image1.addEventListener("mouseup",() => {
+    main_image1.src = "../resources/TA_1.png";
 });
 main_image2.addEventListener("mousedown",() => {
     addScore(main_image2,score2,count2);
