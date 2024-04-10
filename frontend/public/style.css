@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Mitr:wght@200;400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
 
 body{
   margin: 0%;
@@ -37,11 +39,53 @@ h3{
   text-align: center;
 }
 
-.chooser{
-  text-align: center;
-  margin: -250px 0px 0px -750px;
+
+#image_ta1, #image_ta2{
+  border: 10px ridge #FFC6AC;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.1s ease-in-out;
 }
 
+#image_ta1:active, #image_ta2:active {
+  transform: scale(1.05); /* Zoom on click (active state) */
+}
+
+.chooser{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 350px;
+  left: 200px;
+
+  font-size: 20px;
+  
+  color: #000000;
+  background: linear-gradient(90deg, #ffb75a 0%, #fff1a3 100%);
+  padding: 10px 30px;
+  border: solid #000000 2px;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 50px;
+  transition : 1000ms;
+  transform: translateY(0);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.chooser:hover{
+
+  transition : 1000ms;
+  padding: 10px 50px;
+  transform : translateY(-0px);
+  background: linear-gradient(90deg, #ffb75a 0%, #fff1a3 100%);
+  color: #000000;
+  border: solid #000000 2px;
+  }
 *.hidden{
   display: none;
 }
