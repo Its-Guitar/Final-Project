@@ -89,3 +89,69 @@ h3{
 *.hidden{
   display: none;
 }
+
+#game-container {
+  margin: auto;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.circle-button1 {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background : linear-gradient(90deg, #ffb75a 0%, #fff1a3 100%);
+  color: black;
+  font-size: 16px;
+  border: solid #ffffff 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  bottom: 25px;
+  left: 35%;
+  transform: translateX(-50%);
+}
+.circle-button2 {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background : linear-gradient(90deg, #ffb75a 0%, #fff1a3 100%);
+  color: black;
+  font-size: 16px;
+  border: solid #ffffff 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.circle-button3 {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background : linear-gradient(90deg, #ffb75a 0%, #fff1a3 100%);
+  color: black;
+  font-size: 16px;
+  border: solid #ffffff 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  bottom: 25px;
+  left: 65%;
+  transform: translateX(-50%);
+}
