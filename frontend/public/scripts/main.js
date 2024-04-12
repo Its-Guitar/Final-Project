@@ -21,7 +21,7 @@ toggleButton.addEventListener("click", () => {
 });
 
 main_image1.addEventListener("mousedown",() => {
-    main_image1.src = "../resources/TA_1_pop.png";
+    main_image1.src = "../resources/TA_1_popNew.png";
     addScore(main_image1,score1,count1);
     popSound.currentTime = 0;
     popSound.play();
