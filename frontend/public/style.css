@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Mitr:wght@200;400;600&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
 
-
 body{
-  margin: 0%;
+  margin: 0 auto;
   padding: 0%;
-  /*background-color: rgb(255, 244, 198);*/
   background: linear-gradient(to left, rgb(255,244,198),#ffffff);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  align-items: 50%;
 }
 
 .heading{
@@ -39,7 +40,6 @@ h3{
   text-align: center;
 }
 
-
 #image_ta1, #image_ta2{
   border: 10px ridge #FFC6AC;
   box-sizing: border-box;
@@ -48,7 +48,7 @@ h3{
 }
 
 #image_ta1:active, #image_ta2:active {
-  transform: scale(1.05); /* Zoom on click (active state) */
+  transform: scale(1.05);
 }
 
 .chooser{
@@ -56,13 +56,11 @@ h3{
   display: flex;
   align-items: center;
   justify-content: center;
-
   position: absolute;
-  top: 350px;
-  left: 200px;
-
+  top: 50%;
+  left: 10%;
+  transform: translate(-50%, -50%);
   font-size: 20px;
-  
   color: #000000;
   background: linear-gradient(90deg, #ffb75a 0%, #fff1a3 100%);
   padding: 10px 30px;
@@ -77,15 +75,23 @@ h3{
   cursor: pointer;
 }
 
+@media screen and (max-width: 850px){
+  .chooser{
+    position: absolute;
+    top: calc(100% - 50px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 .chooser:hover{
-
   transition : 1000ms;
   padding: 10px 50px;
   transform : translateY(-0px);
   background: linear-gradient(90deg, #ffb75a 0%, #fff1a3 100%);
   color: #000000;
   border: solid #000000 2px;
-  }
+}
+
 *.hidden{
   display: none;
 }
@@ -115,10 +121,12 @@ h3{
   cursor: pointer;
   outline: none;
   position: absolute;
-  bottom: 25px;
+  top: calc(100% + 20px);
   left: 35%;
   transform: translateX(-50%);
+  padding: 10px;
 }
+
 .circle-button2 {
   width: 90px;
   height: 90px;
@@ -133,10 +141,12 @@ h3{
   cursor: pointer;
   outline: none;
   position: absolute;
-  bottom: 25px;
+  top: calc(100% + 20px);
   left: 50%;
   transform: translateX(-50%);
+  padding: 10px;
 }
+
 .circle-button3 {
   width: 90px;
   height: 90px;
@@ -151,7 +161,23 @@ h3{
   cursor: pointer;
   outline: none;
   position: absolute;
-  bottom: 25px;
+  top: calc(100% + 20px);
   left: 65%;
   transform: translateX(-50%);
+  padding: 10px;
 }
+
+#leaderboard {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  float: right;
+}
+
+#leaderboard .line {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+

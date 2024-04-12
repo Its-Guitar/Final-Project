@@ -64,3 +64,5 @@ function addScore(image,score,count){
     score.value++;
     count.innerHTML = parseInt(score.value);
 }
+
+
