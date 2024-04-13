@@ -1,3 +1,14 @@
+import { skillCount1 as skillTa1 } from './main.js';
+import { skillCount2 as skillTa2 } from './main.js';
+
+import { score1 as scoreTa1 } from './main.js';
+import { score2 as scoreTa2 } from './main.js';
+
+import { whichTa as thisTa } from './main.js';
+
+import { activateBonus } from './main.js';
+
+
 var config = {
   type: Phaser.AUTO,
   width: 800,
@@ -9,6 +20,9 @@ var config = {
     create: create
   }
 };
+
+var skillUse;
+var score;
 
 var game = new Phaser.Game(config);
 
@@ -29,48 +43,117 @@ function create() {
     'image2',
     'image3'
   ];
-  var sounds = [
-    'sound1',
-    ['sound2_1', 'sound2_2'],
-    'sound3'
-  ];
 
-  images.forEach((imageName, index) => {
-    var image = this.add.image(0, 0, imageName).setVisible(false);
+  var image1 = this.add.image(0, 0, 'image1').setVisible(false);
+  var image2 = this.add.image(0, 0, 'image2').setVisible(false);
+  var image3 = this.add.image(0, 0, 'image3').setVisible(false);
 
-    var button = document.getElementById(`skill${index + 1}Button`);
 
-    button.addEventListener('click', function () {
-      image.setVisible(true);
+  var button1 = document.getElementById(`skill1Button`);
+  button1.addEventListener('click', function () {
+    if (thisTa == 1) {
+      skillUse = skillTa1;
+      score = scoreTa1;
+    } else if (thisTa == 2) {
+      skillUse = skillTa2;
+      score = scoreTa2;
+    }
+    if (skillUse.value >= 10) {
+      score.value += 200;
+      skillUse.value -= 10;
+      image1.setVisible(true);
 
-      if (Array.isArray(sounds[index])) {
-        sounds[index].forEach((soundKey, soundIndex) => {
-          if (soundIndex === 0) {
-            var sound = this.sound.add(soundKey);
-            sound.play();
-          } else {
-            setTimeout(() => {
-              var sound = this.sound.add(soundKey);
-              sound.play();
-            }, 1000);
-          }
-        });
-      } else {
-        var sound = this.sound.add(sounds[index]);
-        sound.play();
-      }
+      var sound1 = this.sound.add('sound1');
+      sound1.play();
 
       this.tweens.add({
-        targets: image,
+        targets: image1,
         alpha: 1,
         duration: 2000,
         ease: 'Linear',
         onComplete: function () {
-          image.setVisible(false);
+          image1.setVisible(false);
         }
       });
-    }.bind(this));
-  });
+      console.log(score.value);
+      console.log(skillUse.value);
+    } else {
+      console.log("Button 1 cannot be used. your have to click " + (20 - skillUse.value) + " click to active this skill")
+    }
+  }.bind(this));
+
+  var button2 = document.getElementById(`skill2Button`);
+  button2.addEventListener('click', function () {
+    if (thisTa == 1) {
+      skillUse = skillTa1;
+      score = scoreTa1;
+    } else if (thisTa == 2) {
+      skillUse = skillTa2;
+      score = scoreTa2;
+    }
+    if (skillUse.value >= 20) {
+      score.value -= 100;
+      skillUse.value -= 20;
+
+      image2.setVisible(true);
+
+      var sound2_1 = this.sound.add('sound2_1');
+      sound2_1.play();
+      setTimeout(() => {
+        var sound2_2 = this.sound.add('sound2_2');
+        sound2_2.play();
+      }, 1000);
+
+      this.tweens.add({
+        targets: image2,
+        alpha: 1,
+        duration: 2000,
+        ease: 'Linear',
+        onComplete: function () {
+          image2.setVisible(false);
+        }
+      });
+      console.log(score.value);
+      console.log(skillUse.value);
+    } else {
+      console.log("Button 2 cannot be used. your have to click " + (50 - skillUse.value) + " click to active this skill")
+    }
+  }.bind(this));
+
+  var button3 = document.getElementById(`skill3Button`);
+  button3.addEventListener('click', function () {
+    if (thisTa == 1) {
+      skillUse = skillTa1;
+    } else if (thisTa == 2) {
+      skillUse = skillTa2;
+    }
+    if (skillUse.value >= 30) {
+
+      image3.setVisible(true);
+
+      skillUse.value -= 30;
+
+      var sound3 = this.sound.add('sound3');
+      sound3.play();
+
+      this.tweens.add({
+        targets: image3,
+        alpha: 1,
+        duration: 2000,
+        ease: 'Linear',
+        onComplete: function () {
+          image3.setVisible(false);
+        }
+      });
+
+      activateBonus();
+      console.log(score.value);
+      console.log(skillUse.value);
+
+    } else {
+      console.log("Button 1 cannot be used. your have to click " + (60 - skillUse.value) + " click to active this skill")
+    }
+  }.bind(this));
 
   var centerX = this.cameras.main.centerX;
   var centerY = this.cameras.main.centerY;
