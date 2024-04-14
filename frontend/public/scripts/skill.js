@@ -11,13 +11,13 @@ import { activateBonus } from './main.js';
 
 var config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 800,
+  width: window.innerWidth,
+  height: window.innerHeight,
   parent: 'game-container',
   transparent: true,
   scene: {
     preload: preload,
-    create: create
+    create: create,
   }
 };
 
@@ -46,8 +46,7 @@ function create() {
 
   var image1 = this.add.image(0, 0, 'image1').setVisible(false);
   var image2 = this.add.image(0, 0, 'image2').setVisible(false);
-  var image3 = this.add.image(0, 0, 'image3').setVisible(false);
-
+  var image3 = this.add.image(0, -1000, 'image3').setVisible(false);
 
   var button1 = document.getElementById(`skill1Button`);
   button1.addEventListener('click', function () {

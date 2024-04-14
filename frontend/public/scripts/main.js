@@ -27,23 +27,46 @@ toggleButton.addEventListener("click", () => {
     switchTA();
 });
 
-main_image1.addEventListener("mousedown", () => {
-    main_image1.src = "../resources/TA_1_popNew.png";
-    addScore(main_image1, score1, count1, skillCount1);
-    popSound.currentTime = 0;
-    popSound.play();
-    main_image1.setAttribute("draggable", false);
+//Event listener for button
+document.querySelector('.tab').addEventListener('click', function() {
+    var buttonContainer = document.getElementById('button-container');
+    if (buttonContainer.style.display === 'none') {
+      buttonContainer.style.display = 'block';
+    } else {
+      buttonContainer.style.display = 'none';
+    }
 });
 
+//Event listener for TA image
+
+//main_image1 is TA JomnoiZ
+main_image1.addEventListener("mousedown", () => {
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        main_image1.src = "../resources/TA_1_popNew.png";
+        handleStart(main_image1, score1, count1, skillCount1);
+    }
+});
+main_image1.addEventListener("touchstart", () => {
+    main_image1.src = "../resources/TA_1_popNew.png";
+    handleStart(main_image1, score1, count1, skillCount1);
+});
 main_image1.addEventListener("mouseup", () => {
     main_image1.src = "../resources/TA_1.png";
 });
+
+//main_image2 is TA Oat
 main_image2.addEventListener("mousedown", () => {
-    addScore(main_image2, score2, count2, skillCount2);
+    handleStart(main_image2, score2, count2, skillCount2);
+});
+
+function handleStart(image, score, count, skillCount) {
+    addScore(image, score, count, skillCount);
     popSound.currentTime = 0;
     popSound.play();
-    main_image2.setAttribute("draggable", false);
-});
+    image.setAttribute("draggable", false);
+}
+
+//-----------------Functions-----------------
 
 //switch team TA JomnoiZ <-> TA Oat
 function switchTA() {
