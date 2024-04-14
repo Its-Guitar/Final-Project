@@ -11,8 +11,8 @@ import { activateBonus } from './main.js';
 
 var config = {
   type: Phaser.AUTO,
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: '100%',
+  height: '100%',
   parent: 'game-container',
   transparent: true,
   scene: {
@@ -25,6 +25,10 @@ var skillUse;
 var score;
 
 var game = new Phaser.Game(config);
+
+game.scale.pageAlignHorizontally = true;
+game.scale.pageAlignVertically = true;
+game.scale.refresh();
 
 function preload() {
   this.load.image('image1', '../resources/skillImage/skillOne.png');
