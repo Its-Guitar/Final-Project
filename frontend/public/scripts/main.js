@@ -116,3 +116,4 @@ export function activateBonus() {
 function deactivateBonus() {
     bonusActive = false;
 }
+
