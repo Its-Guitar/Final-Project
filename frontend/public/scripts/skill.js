@@ -27,6 +27,8 @@ var centerX;
 var centerY;
 var image1, image2, image3;
 var text1, text2, text3;
+var sound1, sound2_1, sound2_2, sound3, alertSound;
+var soundCheck = false;
 
 function preload() {
   this.load.image('image1', '../resources/skillImage/skillOne.png');
@@ -37,6 +39,7 @@ function preload() {
   this.load.audio('sound2_1', '../resources/skillSound/skillTwo_1.mp3');
   this.load.audio('sound2_2', '../resources/skillSound/skillTwo_2.mp3');
   this.load.audio('sound3', '../resources/skillSound/skillThree.mp3');
+  this.load.audio('alertSound', '../resources/skillSound/alertSound.mp3');
 }
 
 function create() {
@@ -47,7 +50,13 @@ function create() {
   var canvas = document.querySelector('canvas');
   var canvasRect = canvas.getBoundingClientRect();
 
-  scaleFactor = Math.min(canvasRect.width / 800, canvasRect.height / 600);
+  scaleFactor = Math.max(canvasRect.width / 1500, canvasRect.height / 600);
+
+  sound1 = this.sound.add('sound1');
+  sound2_1 = this.sound.add('sound2_1');
+  sound2_2 = this.sound.add('sound2_2');
+  sound3 = this.sound.add('sound3');
+  alertSound = this.sound.add('alertSound');
 
   image1 = this.add.image(0, 0, 'image1').setVisible(false);
   image1.setScale(scaleFactor);
@@ -67,6 +76,7 @@ function create() {
       fontWeight: 'bold',
       align: 'center',
       backgroundColor: '#ffffff',
+      backgroundPadding : '5px'
     }).setVisible(false);
   text1.setScale(scaleFactor);
   text1.setPosition(centerX - (text1.width / 2), centerY - (text1.height / 2));
@@ -110,7 +120,6 @@ function create() {
 
       image1.setVisible(true);
 
-      var sound1 = this.sound.add('sound1');
       sound1.play();
 
       this.tweens.add({
@@ -123,10 +132,22 @@ function create() {
         }
       });
     } else {
+      if (soundCheck == false){
+        soundCheck = true;
+        alertSound.play();
+      };
+      text1.setAlpha(1);
       text1.setVisible(true);
-      this.time.delayedCall(2000, function () {
-        text1.setVisible(false);
-      }, [], this);
+      this.tweens.add({
+        targets: text1,
+        alpha: 0,
+        duration: 500,
+        ease: 'Linear',
+        onComplete: function () {
+          text1.setVisible(false);
+          soundCheck = false;
+        }
+      });
     }
   }.bind(this));
 
@@ -143,10 +164,8 @@ function create() {
 
       image2.setVisible(true);
 
-      var sound2_1 = this.sound.add('sound2_1');
       sound2_1.play();
       setTimeout(() => {
-        var sound2_2 = this.sound.add('sound2_2');
         sound2_2.play();
       }, 1000);
 
@@ -161,10 +180,22 @@ function create() {
       });
 
     } else {
+      if (soundCheck == false){
+        soundCheck = true;
+        alertSound.play();
+      };
+      text2.setAlpha(1);
       text2.setVisible(true);
-      this.time.delayedCall(2000, function () {
-        text2.setVisible(false);
-      }, [], this);
+      this.tweens.add({
+        targets: text2,
+        alpha: 0,
+        duration: 500,
+        ease: 'Linear',
+        onComplete: function () {
+          text2.setVisible(false);
+          soundCheck = false;
+        }
+      });
     }
   }.bind(this));
 
@@ -176,7 +207,6 @@ function create() {
 
       skillUse.value -= 100;
 
-      var sound3 = this.sound.add('sound3');
       sound3.play();
 
       this.tweens.add({
@@ -192,10 +222,22 @@ function create() {
       activateBonus();
 
     } else {
+      if (soundCheck == false){
+        soundCheck = true;
+        alertSound.play();
+      };
+      text3.setAlpha(1);
       text3.setVisible(true);
-      this.time.delayedCall(2000, function () {
-        text3.setVisible(false);
-      }, [], this);
+      this.tweens.add({
+        targets: text3,
+        alpha: 0,
+        duration: 500,
+        ease: 'Linear',
+        onComplete: function () {
+          text3.setVisible(false);
+          soundCheck = false;
+        }
+      });
     }
   }.bind(this));
 }
