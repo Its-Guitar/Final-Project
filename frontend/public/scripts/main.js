@@ -86,7 +86,7 @@ main_image1.addEventListener("mouseup", () => {
     main_image1.src = "../resources/TA_1.png";
 });
 
-//main_image2 is TA Oat
+//main_image2 is TA Faro
 main_image2.addEventListener("mousedown", () => {
     handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);
 });
@@ -101,7 +101,7 @@ function handleStart(image, score, count, scoreEachInterval, skillCount, globalS
 //-----------------Functions-----------------
 
 
-//switch team TA JomnoiZ <-> TA Oat
+//switch team TA JomnoiZ <-> TA Faro
 function switchTA() {
     const score_ta1 = document.querySelector("#ta1");
     const score_ta2 = document.querySelector("#ta2");
