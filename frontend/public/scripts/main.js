@@ -13,7 +13,13 @@ export const totalCount1 = document.querySelector("#ta1Clicks");
 export const totalCount2 = document.querySelector("#ta2Clicks");
 
 //Pop sound
-const popSound = document.getElementById("popSound");
+const sounds = [
+    document.getElementById("popSound1"),
+    document.getElementById("popSound2"),
+    document.getElementById("popSound3"),
+    document.getElementById("popSound4"),
+    document.getElementById("popSound5")
+  ];
 
 export var score1 = { value: 0 };
 export var score2 = { value: 0 };
@@ -105,8 +111,13 @@ main_image2.addEventListener("mouseup", () => {
 
 function handleStart(image, score, count, scoreEachInterval, skillCount, globalScore) {
     addScore(image, score, count, scoreEachInterval, skillCount, globalScore);
-    popSound.currentTime = 0;
-    popSound.play();
+    
+    // Select a random sound from the array
+    const sound = sounds[Math.floor(Math.random() * sounds.length)];
+    
+    sound.currentTime = 0;
+    sound.play();
+    
     image.setAttribute("draggable", false);
 }
 
