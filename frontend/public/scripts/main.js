@@ -32,62 +32,6 @@ const score1EachInterval={value: 0},
 
 console.log("Ready");
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Show the modal when the page is loaded
-    console.log("Page loaded");
-    var modal = document.getElementById("infoModal");
-    modal.style.opacity = "0";
-    modal.style.display = "block";
-    fadeIn(modal, 300);
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            fadeOut(modal, 300, function() {
-                modal.style.display = "none";
-            });
-        }
-    }
-});
-
-function fadeIn(element, duration) {
-    var opacity = 0;
-    var interval = 50;
-    var gap = interval / duration;
-
-    element.style.display = "block";
-    element.style.opacity = opacity;
-
-    function increaseOpacity() {
-        opacity += gap;
-        element.style.opacity = opacity;
-
-        if (opacity >= 1) {
-            clearInterval(fading);
-        }
-    }
-
-    var fading = setInterval(increaseOpacity, interval);
-}
-
-function fadeOut(element, duration, callback) {
-    var opacity = 1;
-    var interval = 50;
-    var gap = interval / duration;
-
-    function decreaseOpacity() {
-        opacity -= gap;
-        element.style.opacity = opacity;
-
-        if (opacity <= 0) {
-            clearInterval(fading);
-            callback();
-        }
-    }
-
-    var fading = setInterval(decreaseOpacity, interval);
-}
-
 //Update your current score from backend
 await backendUpdateScore();
 totalCount1.innerHTML = globalScore_ta1.value;
@@ -113,10 +57,15 @@ toggleButton.addEventListener("click", () => {
 //Event listener for button
 document.querySelector('.tab').addEventListener('click', function() {
     var buttonContainer = document.getElementById('button-container');
+    var tableContainer = document.querySelector(".table");
     if (buttonContainer.style.display === 'none') {
       buttonContainer.style.display = 'block';
+      if (window.matchMedia("(max-width: 1100px)").matches){
+        tableContainer.style.display = 'none';
+      }
     } else {
       buttonContainer.style.display = 'none';
+      tableContainer.style.display = 'block';
     }
 });
 
