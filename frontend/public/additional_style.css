@@ -82,5 +82,36 @@
     transform: translateY(-50%);
     width: 50%;
     font-size: 24px;
+    
   }
+}
+
+@keyframes fade-spin-out {
+  0% {
+      opacity: 1;
+      transform: rotate(0deg);
+  }
+  100% {
+      opacity: 0;
+      transform: rotate(180deg);
+  }
+}
+
+@keyframes fade-spin-in {
+  0% {
+      opacity: 0;
+      transform: rotate(180deg);
+  }
+  100% {
+      opacity: 1;
+      transform: rotate(360deg);
+  }
+}
+
+.fade-spin-out {
+  animation: fade-spin-out 0.5s forwards ease-in;
+}
+
+.fade-spin-in {
+  animation: fade-spin-in 0.5s forwards ease-out;
 }

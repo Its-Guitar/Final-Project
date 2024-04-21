@@ -5,13 +5,17 @@ import { score2 as scoreTa2 } from './main.js';
 
 import { whichTa as thisTa } from './main.js';
 
-import { activateBonus } from './main.js';
+import { activateBonus , sendUpdateScore} from './main.js';
 
 var config = {
   type: Phaser.AUTO,
-  width: '100%',
-  height: '100%',
-  parent: 'game-container',
+  scale: {
+    mode: Phaser.Scale.RESIZE,
+    parent: 'game-container',
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: '100%',
+    height: '100%'
+  },
   transparent: true,
   scene: {
     preload: preload,
@@ -19,7 +23,6 @@ var config = {
     update: update
   }
 };
-
 var game = new Phaser.Game(config);
 var score;
 var scaleFactor;
@@ -106,7 +109,6 @@ function create() {
   text3.setScale(scaleFactor);  
   text3.setPosition(centerX - (text3.width / 2), centerY - (text3.height / 2));
 
-
   var button1 = document.getElementById(`skill1Button`);
   button1.addEventListener('click', function () {
     if (thisTa == 1) {
@@ -116,6 +118,7 @@ function create() {
     }
     if (skillUse.value >= 10) {
       score.value += 50;
+      sendUpdateScore(50,thisTa);
       skillUse.value -= 10;
 
       image1.setVisible(true);
@@ -159,7 +162,8 @@ function create() {
       score = scoreTa2;
     }
     if (skillUse.value >= 50) {
-      score.value -= 50;
+      score.value = Math.max(score.value-100,0);
+      sendUpdateScore(-100,thisTa);
       skillUse.value -= 50;
 
       image2.setVisible(true);
@@ -248,4 +252,15 @@ function update() {
   text2.text = `Click ${Math.max(50 - skillUse.value, 0)} times\nto activate this skill!!`;
 
   text3.text = `Click ${Math.max(100 - skillUse.value, 0)} times\nto activate this skill!!`;
+
+  this.scale.on('resize', function (gameSize) {
+    // Calculate the new center of the game
+    let centerX = gameSize.width / 2;
+    let centerY = gameSize.height / 2;
+
+    // Update the position of the images
+    image1.setPosition(centerX, centerY);
+    image2.setPosition(centerX, centerY);
+    image3.setPosition(centerX, centerY);
+});
 }

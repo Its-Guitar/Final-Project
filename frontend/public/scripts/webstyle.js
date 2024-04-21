@@ -94,3 +94,44 @@ function fadeOut(element, duration, callback) {
     var fading = setInterval(decreaseOpacity, interval);
 }
 
+
+// cps calculation
+let clicks = [];
+let intervalId = null;
+let lastClickTime = null;
+
+export function registerClick() {
+    clicks.push(Date.now());
+    lastClickTime = Date.now();
+
+    // Start interval if it's not already running
+    if (!intervalId) {
+        intervalId = setInterval(calculateAverageCPS, 100);
+    }
+}
+
+function calculateAverageCPS() {
+    let now = Date.now();
+    clicks = clicks.filter(clickTime => now - clickTime <= 500);
+    let cps = Math.min(clicks.length * 2, 10); // Ensure cps is between 0 and 10
+    console.log(cps);
+    // Define start and end colors
+    let startColor = [255, 244, 198];
+    let endColor = [255, 198, 198];
+
+    // Calculate weight based on CPS
+    let weight = cps / 10;
+
+    // Calculate interpolated color
+    let interpolatedColor = startColor.map((start, i) => {
+        return Math.round(start * (1 - weight) + endColor[i] * weight);
+    });
+
+    // Set background color
+    document.body.style.background = `linear-gradient(to left, rgb(${interpolatedColor.join(", ")}), white)`;
+
+    if (now - lastClickTime >= 1000) {
+        clearInterval(intervalId);
+        intervalId = null;
+    }
+}

@@ -1,5 +1,5 @@
 import { getScore, updateScore } from './api.js';
-
+import {registerClick} from './webstyle.js';
 const toggleButton = document.querySelector("#toggleButton");
 
 //TA image
@@ -81,6 +81,7 @@ document.querySelector('.tab').addEventListener('click', function() {
 main_image1.addEventListener("mousedown", () => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         main_image1.src = "../resources/TA_1_popNew.png";
+        registerClick();
         handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
     }
 });
@@ -89,6 +90,14 @@ main_image1.addEventListener("touchstart", () => {
     handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
 });
 main_image1.addEventListener("mouseup", () => {
+    main_image1.src = "../resources/TA_1.png";
+});
+
+main_image1.addEventListener("mouseleave", () => {
+    main_image1.src = "../resources/TA_1.png";
+});
+
+main_image1.addEventListener("touchend", () => {
     main_image1.src = "../resources/TA_1.png";
 });
 
@@ -108,6 +117,13 @@ main_image2.addEventListener("mouseup", () => {
     main_image2.src = "../resources/TA_2.png";
 });
 
+main_image2.addEventListener("mouseleave", () => {
+    main_image2.src = "../resources/TA_2.png";
+});
+
+main_image2.addEventListener("touchend", () => {
+    main_image2.src = "../resources/TA_2.png";
+});
 
 function handleStart(image, score, count, scoreEachInterval, skillCount, globalScore) {
     addScore(image, score, count, scoreEachInterval, skillCount, globalScore);
@@ -134,14 +150,33 @@ function switchTA() {
     if (ta2.classList.contains("hidden")) {
         score_ta2.classList.remove("hidden");
         score_ta1.classList.add("hidden");
-        image_ta2.classList.remove("hidden");
-        image_ta1.classList.add("hidden");
-    }
-    else {
+        image_ta1.classList.add("fade-spin-out");
+        setTimeout(function() {
+            image_ta1.classList.add("hidden");
+            image_ta1.classList.remove("fade-spin-out");
+            void image_ta1.offsetWidth; // Reflow the element
+            image_ta2.classList.remove("hidden");
+            image_ta2.classList.add("fade-spin-in");
+            setTimeout(function() {
+                image_ta2.classList.remove("fade-spin-in");
+                void image_ta2.offsetWidth; // Reflow the element
+            }, 500);
+        }, 500);
+    } else {
         score_ta1.classList.remove("hidden");
         score_ta2.classList.add("hidden");
-        image_ta1.classList.remove("hidden");
-        image_ta2.classList.add("hidden");
+        image_ta2.classList.add("fade-spin-out");
+        setTimeout(function() {
+            image_ta2.classList.add("hidden");
+            image_ta2.classList.remove("fade-spin-out");
+            void image_ta2.offsetWidth; // Reflow the element
+            image_ta1.classList.remove("hidden");
+            image_ta1.classList.add("fade-spin-in");
+            setTimeout(function() {
+                image_ta1.classList.remove("fade-spin-in");
+                void image_ta1.offsetWidth; // Reflow the element
+            }, 500);
+        }, 500);
     }
 
     if (whichTa == 1) {
@@ -166,6 +201,9 @@ async function addScore(image, score, count, scoreEachInterval, skillCount, glob
     
     //count_.innerHTML = globalScore.value;
     scoreEachInterval.value++;
+    if(bonusActive){
+        scoreEachInterval.value++;
+    }
     //console.log(scoreEachInterval.value);
 
     localStorage.setItem("score1", score1.value);
@@ -177,8 +215,10 @@ setInterval(async () => {
     //console.log("Updating score...");
     await sendTotalScore();
     await backendUpdateScore();
-    totalCount1.innerHTML = globalScore_ta1.value;
-    totalCount2.innerHTML = globalScore_ta2.value;
+    //totalCount1.innerHTML = globalScore_ta1.value;
+    //totalCount2.innerHTML = globalScore_ta2.value;
+    updateCount1();
+    updateCount2();
 }, 5000);
 
 //function that send total score to backend
@@ -205,7 +245,50 @@ export function activateBonus() {
     setTimeout(deactivateBonus, 10000);
 }
 
+export function sendUpdateScore(amount,ta){
+    if(ta==1){
+        score1EachInterval.value += amount;
+        count1.innerHTML = parseInt(score1.value); //this line just to update the score from skill.js immediately
+    }
+    else{
+        score2EachInterval.value += amount;
+        count1.innerHTML = parseInt(score1.value); //this line just to update the score from skill.js immediately
+    }
+}
 function deactivateBonus() {
     bonusActive = false;
 }
 
+let intervalId1, intervalId2;
+
+function updateCount1() {
+    clearInterval(intervalId1);
+    let start = parseInt(totalCount1.innerHTML);
+    let end = globalScore_ta1.value;
+    let step = (end - start) / 50;
+    let current = start;
+    intervalId1 = setInterval(() => {
+        current += step;
+        if ((step > 0 && current >= end) || (step < 0 && current <= end)) {
+            current = end;
+            clearInterval(intervalId1);
+        }
+        totalCount1.innerHTML = Math.round(current);
+    }, 100);
+}
+
+function updateCount2() {
+    clearInterval(intervalId2);
+    let start = parseInt(totalCount2.innerHTML);
+    let end = globalScore_ta2.value;
+    let step = (end - start) / 50;
+    let current = start;
+    intervalId2 = setInterval(() => {
+        current += step;
+        if ((step > 0 && current >= end) || (step < 0 && current <= end)) {
+            current = end;
+            clearInterval(intervalId2);
+        }
+        totalCount2.innerHTML = Math.round(current);
+    }, 100);
+}
