@@ -88,8 +88,20 @@ main_image1.addEventListener("mouseup", () => {
 
 //main_image2 is TA Faro
 main_image2.addEventListener("mousedown", () => {
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        main_image2.src = "../resources/TA_2_pop.png";
+        handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);
+    }
+});
+main_image2.addEventListener("touchstart", () => {
+    main_image2.src = "../resources/TA_2_pop.png";
     handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);
 });
+
+main_image2.addEventListener("mouseup", () => {
+    main_image2.src = "../resources/TA_2.png";
+});
+
 
 function handleStart(image, score, count, scoreEachInterval, skillCount, globalScore) {
     addScore(image, score, count, scoreEachInterval, skillCount, globalScore);
