@@ -368,7 +368,7 @@ function showBigText(){
     let div = document.createElement("div");
 
     // Set its text
-    div.textContent = "bunda rahma";
+    div.textContent = "Special Skill Activated!";
 
     // Style it
     div.style.position = "fixed";
