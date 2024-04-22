@@ -6,6 +6,7 @@ import { score2 as scoreTa2 } from './main.js';
 import { whichTa as thisTa } from './main.js';
 
 import { activateBonus , sendUpdateScore} from './main.js';
+// import { usedSkillCount } from '.main.js';
 
 var config = {
   type: Phaser.AUTO,
@@ -117,6 +118,7 @@ function create() {
       score = scoreTa2;
     }
     if (skillUse.value >= 10) {
+      // usedSkillCount.skill1++
       score.value += 50;
       sendUpdateScore(50,thisTa);
       skillUse.value -= 10;
@@ -162,6 +164,7 @@ function create() {
       score = scoreTa2;
     }
     if (skillUse.value >= 50) {
+      // usedSkillCount.skill2++
       score.value = Math.max(score.value-100,0);
       sendUpdateScore(-100,thisTa);
       skillUse.value -= 50;
@@ -206,6 +209,7 @@ function create() {
   var button3 = document.getElementById(`skill3Button`);
   button3.addEventListener('click', function () {
     if (skillUse.value >= 100) {
+      // usedSkillCount.skill3++;
 
       image3.setVisible(true);
 

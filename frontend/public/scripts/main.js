@@ -30,6 +30,12 @@ export var whichTa = 1;
 
 var bonusActive = false;
 
+// var usedSkillCount = {skill1:0,skill2:0,skill3:0};
+
+// var activateCombo1 = false;
+// var activateCombo2 = false;
+// var expired = false;
+
 let globalScore_ta1;
 let globalScore_ta2;
 
@@ -189,9 +195,17 @@ function switchTA() {
 
 //increment score
 async function addScore(image, score, count, scoreEachInterval, skillCount, globalScore) {
-    if (bonusActive == true) {
+    if (activatedCombo1==true){
+    //     score.value +=3;
+    // }else if (activatedCombo2==true){
+    //     score.value ++;
+    //     if(expired==true){
+    //         score.value+=150;
+    //         expired = false;
+    //     }
+    // }else if (bonusActive == true) {
         score.value += 2;
-    } else {
+    }else {
         score.value++;
     }
 
@@ -258,6 +272,30 @@ export function sendUpdateScore(amount,ta){
 function deactivateBonus() {
     bonusActive = false;
 }
+export function activateCombo1(){
+    if(usedSkillCount.skill2===2 && usedSkillCount.skill3 === 1){
+        activateCombo1 = true;
+        setTimeout(deactivateCombo1,20000);
+    }
+}
+export function activateCombo2(){
+    if(usedSkillCount.skill2===2 && usedSkillCount.skill3 === 1){
+        activateCombo2 = true;
+        setTimeout(deactivateCombo2,5000);
+    }
+}
+function resetCountUsedSkill(){
+    usedSkillCount= {skill1:0,skill2:0,skill3:0};
+}
+function deactivateCombo1(){
+    activateCombo1 = false;
+    resetCountUsedSkill();
+}
+function deactivateCombo2(){
+    activateCombo1 = false;
+    resetCountUsedSkill();
+    expired = true;
+}
 
 let intervalId1, intervalId2;
 
@@ -291,4 +329,5 @@ function updateCount2() {
         }
         totalCount2.innerHTML = Math.round(current);
     }, 100);
+
 }
