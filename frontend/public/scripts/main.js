@@ -30,11 +30,14 @@ export var whichTa = 1;
 
 var bonusActive = false;
 
-// var usedSkillCount = {skill1:0,skill2:0,skill3:0};
+var usedSkillCount = [
+    { skill1: 0, skill2: 0, skill3: 0 },
+    { skill1: 0, skill2: 0, skill3: 0 }
+];
 
-// var activateCombo1 = false;
-// var activateCombo2 = false;
-// var expired = false;
+var activatedCombo1 = false;
+var activatedCombo2 = false;
+var expired = false;
 
 let globalScore_ta1;
 let globalScore_ta2;
@@ -192,26 +195,31 @@ function switchTA() {
     }
 }
 
-
 //increment score
 async function addScore(image, score, count, scoreEachInterval, skillCount, globalScore) {
-    if (activatedCombo1==true){
-    //     score.value +=3;
-    // }else if (activatedCombo2==true){
-    //     score.value ++;
-    //     if(expired==true){
-    //         score.value+=150;
-    //         expired = false;
-    //     }
-    // }else if (bonusActive == true) {
-        score.value += 2;
-    }else {
-        score.value++;
-    }
-
+    score.value++;
     skillCount.value++;
     globalScore.value++;
+    scoreEachInterval.value++;
+    //check the activated combo
+    activateCombo1();
+    activateCombo2();
+    console.log(usedSkillCount);
+    if(bonusActive){
+        score.value++;
+        scoreEachInterval.value++;
+    }
+    if(activatedCombo1){
+        console.log("activated combo1");
+        score.value+=2;
+        scoreEachInterval.value+=2;
+    }
+    else if (activatedCombo2){
+        score.value++;
+        scoreEachInterval.value++;
+    }
     count.innerHTML = parseInt(score.value);
+
     
     //count_.innerHTML = globalScore.value;
     scoreEachInterval.value++;
@@ -272,30 +280,53 @@ export function sendUpdateScore(amount,ta){
 function deactivateBonus() {
     bonusActive = false;
 }
+
+
 export function activateCombo1(){
-    if(usedSkillCount.skill2===2 && usedSkillCount.skill3 === 1){
-        activateCombo1 = true;
+    if(usedSkillCount[whichTa-1].skill1>=2 && usedSkillCount[whichTa-1].skill3 >= 1){
+        activatedCombo1 = true;
+        resetCountUsedSkill();
         setTimeout(deactivateCombo1,20000);
+        showBigText();
+
+
     }
 }
 export function activateCombo2(){
-    if(usedSkillCount.skill2===2 && usedSkillCount.skill3 === 1){
-        activateCombo2 = true;
+    if(usedSkillCount[whichTa-1].skill2>=1 && usedSkillCount[whichTa-1].skill3 >= 1 && usedSkillCount[whichTa-1].skill1 >= 1){
+        activatedCombo2 = true;
+        resetCountUsedSkill();
         setTimeout(deactivateCombo2,5000);
+        
     }
 }
 function resetCountUsedSkill(){
-    usedSkillCount= {skill1:0,skill2:0,skill3:0};
+    usedSkillCount = [
+        { skill1: 0, skill2: 0, skill3: 0 },
+        { skill1: 0, skill2: 0, skill3: 0 }
+    ];
 }
 function deactivateCombo1(){
-    activateCombo1 = false;
-    resetCountUsedSkill();
+    activatedCombo1 = false;
 }
 function deactivateCombo2(){
-    activateCombo1 = false;
-    resetCountUsedSkill();
+    activatedCombo2 = false;
     expired = true;
 }
+
+export function sendUsedSkillCount(idx,ta){
+    if(idx==1){
+        usedSkillCount[ta].skill1++;
+    }
+    else if(idx==2){
+        usedSkillCount[ta].skill2++;
+    }
+    else{
+        usedSkillCount[ta].skill3++;
+    }
+}
+
+
 
 let intervalId1, intervalId2;
 
@@ -330,4 +361,33 @@ function updateCount2() {
         totalCount2.innerHTML = Math.round(current);
     }, 100);
 
+}
+
+function showBigText(){
+    // Create a new div element
+    let div = document.createElement("div");
+
+    // Set its text
+    div.textContent = "bunda rahma";
+
+    // Style it
+    div.style.position = "fixed";
+    div.style.top = "50%";
+    div.style.left = "50%";
+    div.style.transform = "translate(-50%, -50%)";
+    div.style.fontSize = "50px";
+    div.style.textAlign = "center";
+    div.style.zIndex = "1000";
+
+    // Append it to the body
+    document.body.appendChild(div);
+    setTimeout(() => {
+        div.style.transition = "opacity 3s";
+        div.style.opacity = "0";
+    }, 3000);
+
+    // Remove it from the DOM after it has faded out
+    setTimeout(() => {
+        document.body.removeChild(div);
+    }, 6000);
 }
