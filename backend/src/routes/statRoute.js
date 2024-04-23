@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get('/', statController.getStat);
 router.put('/', statController.updateStat);
-router.get('/totalCps', statController.getTotalCps);
+router.get('/', statController.getTotalCps);
 
 export default router;

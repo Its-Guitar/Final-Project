@@ -7,32 +7,46 @@ const getStat = async (req, res) => {
 };
 
 // Update stat by ID
-let sessions = {};
+let totalCps = 0;
+let resetTimeout;
 
 const updateStat = async (req, res) => {
     try {
-        const filter = { name: req.body.name };
-        const increment = { value: req.body.value };
-        const options = { new: true, runValidators: true };
+        let filter = { name: req.body.name };
+        const increment = { $inc: { value: req.body.value } }; // Use $inc operator
+        let options = { new: true, runValidators: true };
         const updatedStat = await Stat.findOneAndUpdate(filter, increment, options);
         if (!updatedStat) {
             return res.status(404).json({ error: 'Stat not found' });
         }
 
-        // Store the CPS of the session
-        sessions[req.body.name] = req.body.value;
+        // Accumulate the CPS of all sessions
+        totalCps += req.body.value;
 
-        res.json(updatedStat);
+        // Reset the total CPS to 0 after 1 second of inactivity
+        clearTimeout(resetTimeout);
+        resetTimeout = setTimeout(() => {
+            totalCps = 0;
+        }, 1000);
+
+        filter = { name: 'totalCps' };
+        const update = { value: totalCps };
+        options = { upsert: true, new: true, runValidators: true };
+        const stat = await Stat.findOneAndUpdate(filter, update, options);
+
+        res.json({ updatedStat, totalCpsStat: stat });
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
     }
 };
 
 const getTotalCps = async (req, res) => {
-    // Calculate the total CPS
-    const totalCps = Object.values(sessions).reduce((sum, cps) => sum + cps, 0);
-
-    res.json({ totalCps });
+    // Store the total CPS in the database
+    const filter = { name: 'totalCps' };
+    const update = { value: totalCps };
+    const options = { upsert: true, new: true, runValidators: true };
+    const stat = await Stat.findOneAndUpdate(filter, update, options);
+    res.json(stat);
 };
 
 export { getStat, updateStat, getTotalCps};
