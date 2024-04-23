@@ -135,3 +135,72 @@ function calculateAverageCPS() {
         intervalId = null;
     }
 }
+
+const main_image1 = document.querySelector("#image_ta1");
+const main_image2 = document.querySelector("#image_ta2");
+
+main_image1.addEventListener("mousedown", (event) => {
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        showClickText("Click", event);
+    }
+});
+main_image1.addEventListener("touchstart", (event) => {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        showClickText("Click", event);
+    }
+});
+
+main_image2.addEventListener("mousedown", (event) => {
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        showClickText("Click", event);
+    }
+});
+main_image2.addEventListener("touchstart", (event) => {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        showClickText("Click", event);
+    }
+});
+function showClickText(text, event) {
+    // Create a new div
+    let div = document.createElement("div");
+
+    // Set its text
+    div.textContent = text;
+
+    // Style it
+    div.style.position = "absolute";
+    let x, y;
+    if (event.type === 'touchstart') {
+        x = event.touches[0].clientX;
+        y = event.touches[0].clientY;
+    } else {
+        x = event.clientX;
+        y = event.clientY;
+    }
+    div.style.left = `${x}px`;
+    div.style.top = `${y}px`;
+    div.style.fontSize = "small";
+    div.style.userSelect = "none";
+    div.style.pointerEvents = "none";
+
+    // Append it to the body
+    document.body.appendChild(div);
+
+    // Generate random end points for the animation
+    let randomX = Math.floor(Math.random() * 200 - 100);
+    let randomY = Math.floor(Math.random() * 200 - 100);
+
+    // Animate it
+    div.animate([
+        // keyframes
+        { transform: 'translate(0, 0) rotate(0)', opacity: 1, offset: 0 },
+        { transform: `translate(${randomX}px, ${randomY}px) rotate(360deg)`, opacity: 0, offset: 1 }
+    ], { 
+        // timing options
+        duration: 1000,
+        iterations: 1
+    }).onfinish = () => {
+        // Remove the div once the animation is complete
+        div.remove();
+    };
+}

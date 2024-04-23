@@ -95,8 +95,10 @@ main_image1.addEventListener("mousedown", () => {
     }
 });
 main_image1.addEventListener("touchstart", () => {
-    main_image1.src = "../resources/TA_1_popNew.png";
-    handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        main_image1.src = "../resources/TA_1_popNew.png";
+        handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
+    }
 });
 main_image1.addEventListener("mouseup", () => {
     main_image1.src = "../resources/TA_1.png";
@@ -118,8 +120,10 @@ main_image2.addEventListener("mousedown", () => {
     }
 });
 main_image2.addEventListener("touchstart", () => {
-    main_image2.src = "../resources/TA_2_pop.png";
-    handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        main_image2.src = "../resources/TA_2_pop.png";
+        handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);
+    }
 });
 
 main_image2.addEventListener("mouseup", () => {
@@ -215,7 +219,7 @@ async function addScore(image, score, count, scoreEachInterval, skillCount, glob
         scoreEachInterval.value+=2;
     }
     else if (activatedCombo2){
-        score.value++;
+        score.value+=2;
         scoreEachInterval.value++;
     }
     count.innerHTML = parseInt(score.value);
@@ -287,7 +291,7 @@ export function activateCombo1(){
         activatedCombo1 = true;
         resetCountUsedSkill();
         setTimeout(deactivateCombo1,20000);
-        showBigText();
+        showBigText("Special Skill Activated!");
 
 
     }
@@ -297,7 +301,7 @@ export function activateCombo2(){
         activatedCombo2 = true;
         resetCountUsedSkill();
         setTimeout(deactivateCombo2,5000);
-        
+        showBigText("Special Skill Activated!");
     }
 }
 function resetCountUsedSkill(){
@@ -363,12 +367,12 @@ function updateCount2() {
 
 }
 
-function showBigText(){
+export function showBigText(text){
     // Create a new div element
     let div = document.createElement("div");
 
     // Set its text
-    div.textContent = "Special Skill Activated!";
+    div.textContent = text;
 
     // Style it
     div.style.position = "fixed";
@@ -378,6 +382,12 @@ function showBigText(){
     div.style.fontSize = "50px";
     div.style.textAlign = "center";
     div.style.zIndex = "1000";
+    div.style.fontWeight = "bold";
+    div.style.color = "white";
+    div.style.textShadow = "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black";
+    div.style.fontFamily = "'Comic Sans MS', cursive, sans-serif";
+    div.style.userSelect = "none";
+    div.style.pointerEvents = "none";
 
     // Append it to the body
     document.body.appendChild(div);
