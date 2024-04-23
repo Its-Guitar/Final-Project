@@ -385,7 +385,7 @@ export function showBigText(text){
     div.style.fontWeight = "bold";
     div.style.color = "white";
     div.style.textShadow = "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black";
-    div.style.fontFamily = "'Comic Sans MS', cursive, sans-serif";
+    div.style.fontFamily = "'Trebuchet MS', cursive, sans-serif";
     div.style.userSelect = "none";
     div.style.pointerEvents = "none";
 

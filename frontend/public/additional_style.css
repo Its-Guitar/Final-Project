@@ -28,7 +28,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px; /* Add padding to create space between text and border */
-  font-family: "Comic Sans MS", cursive; /* Change the font to a cartoonish style */
+  font-family: "Trebuchet MS", cursive; /* Change the font to a cartoonish style */
 }
 
 .modal-content strong {
