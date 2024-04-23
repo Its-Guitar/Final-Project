@@ -97,7 +97,7 @@ document.querySelector('.tab').addEventListener('click', function() {
 //main_image1 is TA JomnoiZ
 main_image1.addEventListener("mousedown", () => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        main_image1.src = "/resources/TA_1_popNew.png";
+        main_image1.src = "/resources/TA_1_popNew.PNG";
         registerClick();
         createPopEffect();
         handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
@@ -105,7 +105,7 @@ main_image1.addEventListener("mousedown", () => {
 });
 main_image1.addEventListener("touchstart", () => {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        main_image1.src = "/resources/TA_1_popNew.png";
+        main_image1.src = "/resources/TA_1_popNew.PNG";
         registerClick();
         createPopEffect();
         handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
@@ -126,7 +126,7 @@ main_image1.addEventListener("touchend", () => {
 //main_image2 is TA Faro
 main_image2.addEventListener("mousedown", () => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        main_image2.src = "/resources/TA_2_pop.png";
+        main_image2.src = "/resources/TA_2_pop.PNG";
         registerClick();
         createPopEffect();
         handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);
@@ -134,7 +134,7 @@ main_image2.addEventListener("mousedown", () => {
 });
 main_image2.addEventListener("touchstart", () => {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        main_image2.src = "/resources/TA_2_pop.png";
+        main_image2.src = "/resources/TA_2_pop.PNG";
         registerClick();
         createPopEffect();
         handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);

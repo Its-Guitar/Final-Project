@@ -248,3 +248,9 @@ window.addEventListener('orientationchange', function() {
         location.reload();
     }
 });
+
+window.oncontextmenu = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
+};
