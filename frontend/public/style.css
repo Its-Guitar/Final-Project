@@ -38,7 +38,7 @@ h1{
 }
 
 h3{
-  font-family: 'Trebuchet MS';
+  font-family: 'Verdana';
   margin: 0px 0px -10px 0px;
 }
 
@@ -273,7 +273,7 @@ h3{
   left: 70px;
   transform: translateY(-50%);
   width: 20%;
-  font-family: "Trebuchet MS", cursive;
+  font-family: "Verdana", cursive;
 }
 .table p{
   position: absolute;
@@ -281,7 +281,7 @@ h3{
   left: 70px;
   transform: translateY(-50%);
   width: 20%;
-  font-family: "Trebuchet MS", cursive;
+  font-family: "Verdana", cursive;
 }
 table {
   position: absolute;
@@ -296,7 +296,7 @@ table {
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: "Trebuchet MS", cursive;
+  font-family: "Verdana", cursive;
 }
 table td {
   border: 1px solid gray;

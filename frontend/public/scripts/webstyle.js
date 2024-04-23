@@ -228,3 +228,23 @@ function showClickText(text, event) {
     };
 }
 
+window.addEventListener('orientationchange', function() {
+    if (window.orientation === 90 || window.orientation === -90) {
+        // Clear all components
+        document.body.innerHTML = '';
+
+        // Create and display message
+        const message = document.createElement('div');
+        message.textContent = 'ROTATE YOUR DEVICE BACK PLEASE!';
+        message.style.position = 'fixed';
+        message.style.top = '50%';
+        message.style.left = '50%';
+        message.style.transform = 'translate(-50%, -50%)';
+        message.style.fontSize = '2em';
+        message.style.color = 'black';
+        document.body.appendChild(message);
+    } else {
+        // Reload the page when the device is rotated back to portrait mode
+        location.reload();
+    }
+});
