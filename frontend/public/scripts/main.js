@@ -5,6 +5,10 @@ const toggleButton = document.querySelector("#toggleButton");
 //TA image
 const main_image1 = document.querySelector("#image_ta1");
 const main_image2 = document.querySelector("#image_ta2");
+let preloadImage1 = new Image();
+let preloadImage2 = new Image();
+preloadImage1.src = "/resources/TA_1_popNew.PNG";
+preloadImage2.src = "/resources/TA_2_pop.PNG";
 
 //Score of each TA
 export const count1 = document.querySelector("#ta1");
@@ -97,7 +101,7 @@ document.querySelector('.tab').addEventListener('click', function() {
 //main_image1 is TA JomnoiZ
 main_image1.addEventListener("mousedown", () => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        main_image1.src = "/resources/TA_1_popNew.PNG";
+        main_image1.src = preloadImage1.src;
         registerClick();
         createPopEffect();
         handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
@@ -105,7 +109,7 @@ main_image1.addEventListener("mousedown", () => {
 });
 main_image1.addEventListener("touchstart", () => {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        main_image1.src = "/resources/TA_1_popNew.PNG";
+        main_image1.src = preloadImage1.src;
         registerClick();
         createPopEffect();
         handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
@@ -126,7 +130,7 @@ main_image1.addEventListener("touchend", () => {
 //main_image2 is TA Faro
 main_image2.addEventListener("mousedown", () => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        main_image2.src = "/resources/TA_2_pop.PNG";
+        main_image2.src = preloadImage2.src;
         registerClick();
         createPopEffect();
         handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);
@@ -134,7 +138,7 @@ main_image2.addEventListener("mousedown", () => {
 });
 main_image2.addEventListener("touchstart", () => {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        main_image2.src = "/resources/TA_2_pop.PNG";
+        main_image2.src = preloadImage2.src;
         registerClick();
         createPopEffect();
         handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);

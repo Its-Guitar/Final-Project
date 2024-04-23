@@ -115,15 +115,26 @@ export function registerClick() {
 function calculateAverageCPS() {
     let now = Date.now();
     clicks = clicks.filter(clickTime => now - clickTime <= 1000);
-    let cps = Math.min(clicks.length , 40); // Ensure cps is between 0 and 10
-    //console.log(cps);
-    //updateStat(`cps`, 1);
-    // Define start and end colors
-    let startColor = [255, 255, 255];
-    let endColor = [255, 165, 0];
+    let cps = Math.min(clicks.length , 40); // Ensure cps is between 0 and 40
 
-    // Calculate weight based on CPS
-    let weight = cps / 40;
+    // Define color ranges
+    let colors = [
+        {cps: 10, color: [255, 242, 198]},
+        {cps: 15, color: [255, 165, 0]},
+        {cps: 30, color: [253, 45, 45]},
+        {cps: 40, color: [123, 123, 123]}
+    ];
+
+    // Find the current color range
+    let startColor, endColor, i;
+    for (let i = 0; i < colors.length - 1; i++) {
+        if (cps <= colors[i+1].cps) {
+            startColor = colors[i].color;
+            endColor = colors[i+1].color;
+            cps -= colors[i].cps;
+
+             // Calculate weight based on CPS
+    let weight = cps / (colors[i+1].cps - colors[i].cps);
 
     // Calculate interpolated color
     let interpolatedColor = startColor.map((start, i) => {
@@ -132,6 +143,12 @@ function calculateAverageCPS() {
 
     // Set background color
     document.body.style.background = `linear-gradient(to left, rgb(255, 242, 198), rgb(${interpolatedColor.join(", ")}))`;
+
+            break;
+        }
+    }
+
+
 
     if (now - lastClickTime >= 1000) {
         clearInterval(intervalId);
