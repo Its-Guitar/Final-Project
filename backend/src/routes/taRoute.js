@@ -6,4 +6,5 @@ const router = express.Router();
 router.get('/', taController.getScore);
 router.put('/', taController.updateScore);
 
+
 export default router;

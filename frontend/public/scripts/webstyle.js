@@ -1,3 +1,5 @@
+import { getStat, updateStat } from './api.js';
+
 document.addEventListener("DOMContentLoaded", function() {
     // Show the modal when the page is loaded
     console.log("Page loaded");
@@ -112,9 +114,10 @@ export function registerClick() {
 
 function calculateAverageCPS() {
     let now = Date.now();
-    clicks = clicks.filter(clickTime => now - clickTime <= 500);
-    let cps = Math.min(clicks.length * 2, 40); // Ensure cps is between 0 and 10
+    clicks = clicks.filter(clickTime => now - clickTime <= 1000);
+    let cps = Math.min(clicks.length , 40); // Ensure cps is between 0 and 10
     //console.log(cps);
+    updateStat(`cps`, cps);
     // Define start and end colors
     let startColor = [255, 255, 255];
     let endColor = [255, 165, 0];

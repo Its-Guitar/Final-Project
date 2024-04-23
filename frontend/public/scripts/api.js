@@ -22,3 +22,31 @@ export async function updateScore(taName, score) {
         body: JSON.stringify(payload),
     }).then(response => response.json());
 }
+
+export async function getStat(){
+    const stats = await fetch(`${BACKEND_URL}/stats`).then((r) => r.json());
+    return stats;
+}
+
+export async function updateStat(taName, value) {
+    //console.log(taName, score);
+
+    const payload = {
+        name: taName,
+        value: value,
+    };
+    console.log(payload);
+    
+    await fetch(`${BACKEND_URL}/stats`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    }).then(response => response.json());
+}
+
+export async function getTotalCps(){
+    const totalCps = await fetch(`${BACKEND_URL}/totalCps`).then((r) => r.json());
+    return totalCps;
+}
