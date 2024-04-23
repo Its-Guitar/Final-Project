@@ -266,5 +266,8 @@ function update() {
     image1.setPosition(centerX, centerY);
     image2.setPosition(centerX, centerY);
     image3.setPosition(centerX, centerY);
+    text1.setPosition(centerX,centerY);
+    text2.setPosition(centerX,centerY);
+    text3.setPosition(centerX,centerY);
 });
 }

@@ -117,7 +117,7 @@ function calculateAverageCPS() {
     clicks = clicks.filter(clickTime => now - clickTime <= 1000);
     let cps = Math.min(clicks.length , 40); // Ensure cps is between 0 and 10
     //console.log(cps);
-    updateStat(`cps`, cps);
+    //updateStat(`cps`, 1);
     // Define start and end colors
     let startColor = [255, 255, 255];
     let endColor = [255, 165, 0];
@@ -227,3 +227,4 @@ function showClickText(text, event) {
         div.remove();
     };
 }
+

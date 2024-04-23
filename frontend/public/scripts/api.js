@@ -45,8 +45,3 @@ export async function updateStat(taName, value) {
         body: JSON.stringify(payload),
     }).then(response => response.json());
 }
-
-export async function getTotalCps(){
-    const totalCps = await fetch(`${BACKEND_URL}/totalCps`).then((r) => r.json());
-    return totalCps;
-}

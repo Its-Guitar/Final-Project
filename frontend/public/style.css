@@ -275,6 +275,14 @@ h3{
   width: 20%;
   font-family: "Trebuchet MS", cursive;
 }
+.table p{
+  position: absolute;
+  top: 58%;
+  left: 70px;
+  transform: translateY(-50%);
+  width: 20%;
+  font-family: "Trebuchet MS", cursive;
+}
 table {
   position: absolute;
   top: 50%;

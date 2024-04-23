@@ -11,6 +11,7 @@ export const count1 = document.querySelector("#ta1");
 export const count2 = document.querySelector("#ta2");
 export const totalCount1 = document.querySelector("#ta1Clicks");
 export const totalCount2 = document.querySelector("#ta2Clicks");
+const leadMessage = document.getElementById('leadMessage');
 
 //Pop sound
 const sounds = [
@@ -51,6 +52,13 @@ console.log("Ready");
 await backendUpdateScore();
 totalCount1.innerHTML = globalScore_ta1.value;
 totalCount2.innerHTML = globalScore_ta2.value;
+if (globalScore_ta1.value > globalScore_ta2.value) {
+    leadMessage.textContent = 'TA JomnoiZ is in the lead';
+    } else if (globalScore_ta1.value < globalScore_ta2.value) {
+    leadMessage.textContent = 'TA Faro is in the lead';
+    } else {
+    leadMessage.textContent = 'It\'s a tie';
+    }
 
 //Update your current score from local storage
 if (localStorage.getItem("score1") != null) {
@@ -91,6 +99,7 @@ main_image1.addEventListener("mousedown", () => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         main_image1.src = "/resources/TA_1_popNew.png";
         registerClick();
+        createPopEffect();
         handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
     }
 });
@@ -98,6 +107,7 @@ main_image1.addEventListener("touchstart", () => {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         main_image1.src = "/resources/TA_1_popNew.png";
         registerClick();
+        createPopEffect();
         handleStart(main_image1, score1, count1, score1EachInterval, skillCount, globalScore_ta1);
     }
 });
@@ -118,6 +128,7 @@ main_image2.addEventListener("mousedown", () => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         main_image2.src = "/resources/TA_2_pop.png";
         registerClick();
+        createPopEffect();
         handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);
     }
 });
@@ -125,6 +136,7 @@ main_image2.addEventListener("touchstart", () => {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
         main_image2.src = "/resources/TA_2_pop.png";
         registerClick();
+        createPopEffect();
         handleStart(main_image2, score2, count2, score2EachInterval, skillCount, globalScore_ta2);
     }
 });
@@ -222,14 +234,13 @@ async function addScore(image, score, count, scoreEachInterval, skillCount, glob
         scoreEachInterval.value+=2;
     }
     else if (activatedCombo2){
-        score.value+=2;
-        scoreEachInterval.value++;
+        score.value+=4;
+        scoreEachInterval.value+=4;
     }
     count.innerHTML = parseInt(score.value);
 
     
     //count_.innerHTML = globalScore.value;
-    scoreEachInterval.value++;
     if(bonusActive){
         scoreEachInterval.value++;
     }
@@ -237,6 +248,9 @@ async function addScore(image, score, count, scoreEachInterval, skillCount, glob
 
     localStorage.setItem("score1", score1.value);
     localStorage.setItem("score2", score2.value);
+
+    runUpdateWhoLead();
+
 }
 
 //Send the new totalScore value to backend every 5 seconds, and update the totalScore value from backend
@@ -248,6 +262,9 @@ setInterval(async () => {
     //totalCount2.innerHTML = globalScore_ta2.value;
     updateCount1();
     updateCount2();
+
+    runUpdateWhoLead();
+
 }, 5000);
 
 //function that send total score to backend
@@ -403,4 +420,23 @@ export function showBigText(text){
     setTimeout(() => {
         document.body.removeChild(div);
     }, 6000);
+}
+
+function runUpdateWhoLead(){
+    if (globalScore_ta1.value > globalScore_ta2.value) {
+        leadMessage.textContent = 'TA JomnoiZ is in the lead';
+        } else if (globalScore_ta1.value < globalScore_ta2.value) {
+        leadMessage.textContent = 'TA Faro is in the lead';
+        } else {
+        leadMessage.textContent = 'It\'s a tie';
+        }
+}
+
+function createPopEffect() {
+    const effect = document.createElement('div');
+    effect.className = 'pop-effect';
+    effect.style.left = `${Math.random() * window.innerWidth}px`;
+    effect.style.top = `${Math.random() * window.innerHeight}px`;
+    document.body.appendChild(effect);
+    setTimeout(() => document.body.removeChild(effect), 1000);
 }
