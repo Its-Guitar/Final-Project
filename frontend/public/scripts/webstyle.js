@@ -149,6 +149,15 @@ main_image1.addEventListener("touchstart", (event) => {
         showClickText("Click", event);
     }
 });
+main_image1.addEventListener("touchmove", (event) => {
+    // Check if the user agent indicates a mobile device
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        // Update the position of "Click" text as the touch moves
+        showClickText("Click", event.touches[0]);      
+        // Prevent default behavior to avoid unwanted scrolling
+        event.preventDefault();
+    }
+});
 
 main_image2.addEventListener("mousedown", (event) => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
@@ -160,6 +169,17 @@ main_image2.addEventListener("touchstart", (event) => {
         showClickText("Click", event);
     }
 });
+main_image2.addEventListener("touchmove", (event) => {
+    // Check if the user agent indicates a mobile device
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        // Update the position of "Click" text as the touch moves
+        showClickText("Click", event.touches[0]);
+        
+        // Prevent default behavior to avoid unwanted scrolling
+        event.preventDefault();
+    }
+});
+
 function showClickText(text, event) {
     // Create a new div
     let div = document.createElement("div");
