@@ -1,19 +1,24 @@
 # Computer Engineering Essentials (2110221) (2023/2)
 
-## Final project : POP TA
-## Detail
-Pop TA is inspired by Pop Cat. It is a fun web game where you can interact with a virtual CEE teaching
-assistant! Users will increase points by clicking on the image of the TA. But there's more to it than that. The game
-has different functions to keep things interesting and make you have fun.
+## Final Project: POP TA
 
+### About the Project
+**POP TA** is inspired by **Pop Cat**. It is a fun web game where you can interact with a virtual CEE teaching assistant!  
+Players increase their score by clicking on the TA's image, but there's more—unique functions are included to make the game more exciting and enjoyable.
+
+### The 2 main TA in this website.
 <p float="left">
-  <img src="/frontend/public/resources/TA_1.png" width="300" />
-  <img src="/frontend/public/resources/TA_2.png" width="300" />
+  <img src="/frontend/public/resources/TA_1.png" width="300" alt="Game Screenshot 1" />
+  <img src="/frontend/public/resources/TA_2.png" width="300" alt="Game Screenshot 2" />
 </p>
 
-## Contributor
-- ItsGuitar
-- Pitchaaom
-- GnuBurn
-- Flook0147
+### Notes
+- This is a university final project for the subject **Computer Engineering Essentials (2110221) (2023/2)**.  
+  **DO NOT COPY THIS PROJECT.** You are welcome to take inspiration but not duplicate it.
+- This project was created for educational purposes.
 
+### Contributors
+- ItsGuitar  
+- Pitchaaom  
+- GnuBurn  
+- Flook0147
